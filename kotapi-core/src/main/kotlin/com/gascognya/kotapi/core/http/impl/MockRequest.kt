@@ -3,7 +3,10 @@ package com.gascognya.kotapi.core.http.impl
 import com.gascognya.kotapi.core.http.HttpMethod
 import com.gascognya.kotapi.core.http.Request
 import com.gascognya.kotapi.core.utils.PathParamsKey
+import com.gascognya.kotapi.core.utils.annotation.Fluent
 import com.gascognya.kotapi.core.utils.collection.PropertyMap
+import com.gascognya.kotapi.core.utils.collection.putMany
+import com.gascognya.kotapi.core.utils.collection.putOne
 import jakarta.servlet.http.Cookie
 import jakarta.servlet.http.Part
 import java.io.InputStream
@@ -20,4 +23,5 @@ class MockRequest: Request {
     override var localAddress: Pair<String, Int> = "127.0.0.1" to 8000
     override var remoteAddress: Pair<String, Int> = "127.0.0.1" to 9000
     override val store: PropertyMap = PropertyMap()
+
 }

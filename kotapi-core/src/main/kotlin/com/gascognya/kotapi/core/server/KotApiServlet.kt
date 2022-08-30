@@ -1,6 +1,7 @@
 package com.gascognya.kotapi.core.server
 
 import com.gascognya.kotapi.core.Application
+import com.gascognya.kotapi.core.http.Response
 import com.gascognya.kotapi.core.http.impl.HttpRequest
 import jakarta.servlet.GenericServlet
 import jakarta.servlet.ServletException
@@ -16,6 +17,21 @@ class KotApiServlet(private val app: Application): GenericServlet() {
         }
         val request = HttpRequest(rawReq)
         val response = app(request)
+        convertResponse(response, rawResp)
+    }
 
+    private fun convertResponse(response: Response, raw: HttpServletResponse){
+        raw.status = response.status
+        for (header in response.headers) {
+            for (value in header.value) {
+                raw.addHeader(header.key, value)
+            }
+        }
+
+        for (cookie in response.cookies) {
+            raw.addCookie(cookie)
+        }
+
+        response.stream.copyTo(raw.outputStream)
     }
 }

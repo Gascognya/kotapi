@@ -3,7 +3,12 @@ package com.gascognya.kotapi.core.utils
 import com.gascognya.kotapi.core.http.Response
 import java.nio.charset.Charset
 
-object ResponsePrintUtils {
+object ResponseBodyUtils {
+
+    fun asText(response: Response): String{
+        return response.stream.readAllBytes().toString(Charsets.UTF_8)
+    }
+
 
     fun format(response: Response): String {
         val headerString = response.headers

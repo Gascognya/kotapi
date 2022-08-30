@@ -6,12 +6,14 @@ import com.gascognya.kotapi.core.http.HttpMethod
 import com.gascognya.kotapi.core.router.impl.DefaultRoute
 import com.gascognya.kotapi.core.router.impl.DefaultRouter
 import com.gascognya.kotapi.core.utils.annotation.Fluent
+import java.util.Deque
+import java.util.LinkedList
 
 interface Router : Application {
 
     class Builder {
-        private val routeConstructors = mutableListOf<Route.Constructor>()
-        private val middlewares = mutableListOf<Middleware>()
+        private val routeConstructors = LinkedList<Route.Constructor>()
+        private val middlewares = LinkedList<Middleware>()
         private var prefix: String = ""
 
         @Fluent
@@ -21,12 +23,12 @@ interface Router : Application {
 
         @Fluent
         fun middleware(middleware: Middleware) = apply {
-            middlewares.add(middleware)
+            middlewares.addLast(middleware)
         }
 
         @Fluent
         fun route(route: Route.Constructor) = apply {
-            routeConstructors.add(route)
+            routeConstructors.addLast(route)
         }
 
         @Fluent
