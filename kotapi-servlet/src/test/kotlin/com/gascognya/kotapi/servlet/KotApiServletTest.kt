@@ -1,4 +1,4 @@
-package com.gascognya.kotapi.core.server
+package com.gascognya.kotapi.servlet
 
 import com.gascognya.kotapi.core.Application
 import com.gascognya.kotapi.core.http.Response

@@ -4,14 +4,13 @@ import com.gascognya.kotapi.core.http.impl.HttpResponse
 import com.gascognya.kotapi.core.utils.annotation.Fluent
 import com.gascognya.kotapi.core.utils.collection.putMany
 import com.gascognya.kotapi.core.utils.collection.putOne
-import jakarta.servlet.http.Cookie
 import java.io.InputStream
 
 interface Response {
     var status: Int
     val stream: InputStream
     val headers: Map<String, List<String>>
-    val cookies: List<Cookie>
+    val cookies: List<HttpCookie>
 
     class Builder{
         private val resp = HttpResponse()
@@ -26,7 +25,7 @@ interface Response {
         fun addHeaders(name: String, vararg value: String) = apply { resp.headers.putMany(name, value.toList()) }
 
         @Fluent
-        fun addCookie(cookie: Cookie) = apply { resp.cookies.add(cookie) }
+        fun addCookie(cookie: HttpCookie) = apply { resp.cookies.add(cookie) }
 
         @Fluent
         fun setBody(body: String) = apply { resp.stream = body.byteInputStream() }

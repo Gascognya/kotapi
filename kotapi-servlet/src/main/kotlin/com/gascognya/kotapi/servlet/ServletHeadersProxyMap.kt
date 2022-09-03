@@ -1,4 +1,4 @@
-package com.gascognya.kotapi.core.utils.collection
+package com.gascognya.kotapi.servlet
 
 import jakarta.servlet.http.HttpServletRequest
 import java.util.Collections

@@ -6,6 +6,7 @@
 
     <modules>
         <module>kotapi-core</module>
+        <module>kotapi-servlet</module>
     </modules>
 
     <artifactId>kotapi-parent</artifactId>
@@ -21,6 +22,9 @@
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
         <kotlin.version>1.6.21</kotlin.version>
+        <jetty.version>11.0.11</jetty.version>
+        <servlet.version>5.0.0</servlet.version>
+        <slf4j.version>2.0.0</slf4j.version>
     </properties>
 
 
@@ -31,30 +35,38 @@
                 <artifactId>kotapi-core</artifactId>
                 <version>1.0</version>
             </dependency>
+
+            <!--      servlet      -->
             <dependency>
                 <groupId>jakarta.servlet</groupId>
                 <artifactId>jakarta.servlet-api</artifactId>
-                <version>5.0.0</version>
+                <version>${servlet.version}</version>
             </dependency>
+
+
+            <!--      server      -->
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-server</artifactId>
-                <version>11.0.11</version>
+                <version>${jetty.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-servlet</artifactId>
-                <version>11.0.11</version>
+                <version>${jetty.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-client</artifactId>
-                <version>11.0.11</version>
+                <version>${jetty.version}</version>
             </dependency>
+
+
+            <!--      logger      -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>2.0.0</version>
+                <version>${slf4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -112,14 +124,6 @@
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.22.2</version>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
-                <configuration>
-                    <mainClass>MainKt</mainClass>
-                </configuration>
             </plugin>
         </plugins>
     </build>

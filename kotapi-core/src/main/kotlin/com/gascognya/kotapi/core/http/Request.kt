@@ -7,7 +7,6 @@ import com.gascognya.kotapi.core.utils.annotation.Fluent
 import com.gascognya.kotapi.core.utils.collection.PropertyMap
 import com.gascognya.kotapi.core.utils.collection.putMany
 import com.gascognya.kotapi.core.utils.collection.putOne
-import jakarta.servlet.http.Cookie
 import java.io.InputStream
 
 interface Request {
@@ -19,7 +18,7 @@ interface Request {
     val pathParams: Map<String, String>
 
     val headers: Map<String, List<String>>
-    val cookies: List<Cookie>
+    val cookies: List<HttpCookie>
 
     val localAddress: Pair<String, Int>
     val remoteAddress: Pair<String, Int>
@@ -44,7 +43,7 @@ interface Request {
         fun addHeaders(name: String, vararg value: String) = apply { req.headers.putMany(name, value.toList()) }
 
         @Fluent
-        fun addCookie(cookie: Cookie) = apply { req.cookies.add(cookie) }
+        fun addCookie(cookie: HttpCookie) = apply { req.cookies.add(cookie) }
 
         @Fluent
         fun setRemoteAddress(host: String, port: Int) = apply { req.remoteAddress = host to port }

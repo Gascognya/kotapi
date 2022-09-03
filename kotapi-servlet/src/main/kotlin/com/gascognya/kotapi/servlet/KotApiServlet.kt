@@ -1,8 +1,8 @@
-package com.gascognya.kotapi.core.server
+package com.gascognya.kotapi.servlet
 
 import com.gascognya.kotapi.core.Application
 import com.gascognya.kotapi.core.http.Response
-import com.gascognya.kotapi.core.http.impl.HttpRequest
+import com.gascognya.kotapi.servlet.ServletCookie.Companion.cast
 import jakarta.servlet.GenericServlet
 import jakarta.servlet.ServletException
 import jakarta.servlet.ServletRequest
@@ -15,7 +15,7 @@ class KotApiServlet(private val app: Application): GenericServlet() {
         if (rawReq !is HttpServletRequest || rawResp !is HttpServletResponse) {
             throw ServletException("non-HTTP request or response")
         }
-        val request = HttpRequest(rawReq)
+        val request = ServletRequest(rawReq)
         val response = app(request)
         convertResponse(response, rawResp)
     }
@@ -29,7 +29,7 @@ class KotApiServlet(private val app: Application): GenericServlet() {
         }
 
         for (cookie in response.cookies) {
-            raw.addCookie(cookie)
+            raw.addCookie(cookie.cast())
         }
 
         response.stream.copyTo(raw.outputStream)
