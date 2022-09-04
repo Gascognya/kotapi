@@ -33,7 +33,9 @@ interface Router : Application {
 
         @Fluent
         fun route(path: String, method: HttpMethod, app: Application) = apply {
-            route(Route.create(path, method, app))
+            route { prefix, m ->
+                DefaultRoute(prefix + path, method, m?.then(app) ?: app)
+            }
         }
         
         @Fluent

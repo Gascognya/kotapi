@@ -8,7 +8,7 @@
 
 ```kotlin
 val app = Application {
-    val name = it.queryParams["name"] ?: "unknown"
+    val name = it.queryParam("name", "unknown")
     Response("hello $name")
 }
 ```
@@ -43,8 +43,8 @@ val servlet = KotApiServlet(app)
 
 ```kotlin
 val helloApp = Application {
-    val name = it.pathParams["name"] ?: "unknown"
-    val age = it.queryParams["age"] ?: "-1"
+    val name = it.queryParam("name", "unknown")
+    val age = it.queryParam("age", -1)
     Response("hello $name ($age)")
 }
 

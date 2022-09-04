@@ -19,5 +19,4 @@ class MockRequest: Request {
     override var localAddress: Pair<String, Int> = "127.0.0.1" to 8000
     override var remoteAddress: Pair<String, Int> = "127.0.0.1" to 9000
     override val store: PropertyMap = PropertyMap()
-
 }

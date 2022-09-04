@@ -55,24 +55,24 @@ interface Request {
     }
 
     companion object{
-        fun GET(path: String): Request.Builder {
-            return Request.Builder().setPath(path).setMethod(HttpMethod.Get)
+        fun GET(path: String): Builder {
+            return Builder().setPath(path).setMethod(HttpMethod.Get)
         }
 
-        fun POST(path: String): Request.Builder {
-            return Request.Builder().setPath(path).setMethod(HttpMethod.Post)
+        fun POST(path: String): Builder {
+            return Builder().setPath(path).setMethod(HttpMethod.Post)
         }
 
-        fun DELETE(path: String): Request.Builder {
-            return Request.Builder().setPath(path).setMethod(HttpMethod.Delete)
+        fun DELETE(path: String): Builder {
+            return Builder().setPath(path).setMethod(HttpMethod.Delete)
         }
 
-        fun PUT(path: String): Request.Builder {
-            return Request.Builder().setPath(path).setMethod(HttpMethod.Put)
+        fun PUT(path: String): Builder {
+            return Builder().setPath(path).setMethod(HttpMethod.Put)
         }
 
-        fun PATCH(path: String): Request.Builder {
-            return Request.Builder().setPath(path).setMethod(HttpMethod.Patch)
+        fun PATCH(path: String): Builder {
+            return Builder().setPath(path).setMethod(HttpMethod.Patch)
         }
     }
 }

@@ -6,7 +6,9 @@ import com.gascognya.kotapi.core.exception.Catching
 import com.gascognya.kotapi.core.exception.ExceptionCatchingMiddleware
 import com.gascognya.kotapi.core.http.HttpMethod
 import com.gascognya.kotapi.core.http.Request
+import com.gascognya.kotapi.core.http.Request.Companion.GET
 import com.gascognya.kotapi.core.http.Response
+import com.gascognya.kotapi.core.http.queryParam
 import com.gascognya.kotapi.core.router.Router
 import com.gascognya.kotapi.core.utils.ResponseBodyUtils
 import org.slf4j.LoggerFactory
@@ -28,21 +30,19 @@ internal class DefaultRouterTest {
         val router = Router.Builder()
             .middleware(echoMiddleware)
             .get("/hello/{name}") {
-                val name = it.pathParams["name"] ?: "unknown"
-                val age = it.queryParams["age"] ?: "-1"
+                val name = it.queryParam("name", "unknown")
+                val age = it.queryParam("age", -1)
                 Response("hello $name ($age)")
             }
             .build()
 
         run {
-            val request = Request.Builder()
-                .setPath("/hello/bob")
-                .setMethod(HttpMethod.Get)
-                .addQuery("age", "18")
-                .build()
+            val request = GET("/hello/bob").addQuery("age", "18")
 
             val response = router(request)
+
             val msg = ResponseBodyUtils.asText(response)
+
             assertEquals("hello bob (18)", msg)
         }
     }
