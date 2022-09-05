@@ -34,9 +34,9 @@ val response = app(request)
 
 ```kotlin
 val servlet = KotApiServlet(app)
-// Builder Server By Servlet
+// Build Server By Servlet
 
-// send request to http://127.0.0.1?name=bob
+// Send request to http://127.0.0.1?name=bob
 ```
 
 ### Router
