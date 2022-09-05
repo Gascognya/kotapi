@@ -6,7 +6,7 @@ import com.gascognya.kotapi.core.http.Request
 import com.gascognya.kotapi.core.router.Route
 import com.gascognya.kotapi.core.utils.PathParamsKey
 import com.gascognya.kotapi.core.utils.matcher.PathPattern
-import com.gascognya.kotapi.standard.utils.matcher.PathContainer
+import com.gascognya.kotapi.core.utils.matcher.PathContainer
 
 class DefaultRoute(
     override val path: String,

@@ -1,9 +1,5 @@
 package com.gascognya.kotapi.core.utils.matcher
 
-import com.gascognya.kotapi.standard.utils.matcher.PathContainer
-import com.gascognya.kotapi.standard.utils.matcher.PathSegment
-import com.gascognya.kotapi.standard.utils.matcher.PatternParseException
-
 
 class PathPattern private constructor(private val segments: List<PathSegment>) {
     fun match(container: PathContainer): Map<String, String>? {

@@ -1,4 +1,4 @@
-package com.gascognya.kotapi.standard.utils.matcher
+package com.gascognya.kotapi.core.utils.matcher
 
 class PathContainer(val elements: List<String>) {
 

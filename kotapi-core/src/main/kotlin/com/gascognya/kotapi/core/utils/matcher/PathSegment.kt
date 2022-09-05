@@ -1,4 +1,4 @@
-package com.gascognya.kotapi.standard.utils.matcher
+package com.gascognya.kotapi.core.utils.matcher
 
 internal sealed interface PathSegment {
     class Literal(val value: String) : PathSegment
