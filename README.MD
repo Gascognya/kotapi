@@ -43,7 +43,7 @@ val servlet = KotApiServlet(app)
 
 ```kotlin
 val helloApp = Application {
-    val name = it.queryParam("name", "unknown")
+    val name = it.pathParam("name", "unknown")
     val age = it.queryParam("age", -1)
     Response("hello $name ($age)")
 }
